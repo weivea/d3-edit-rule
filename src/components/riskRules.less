@@ -1,0 +1,138 @@
+.risk-rules-box{
+  position: relative;
+  width: 100%;
+  padding: 5px;
+  border: 1px dashed #aaa;
+  border-radius: 10px;
+  overflow: hidden;
+  .tpl-list, .atom-list{
+    height: 100%;
+    width: 100px;
+
+    overflow-y: auto;
+    .item{
+      padding: 5px 5px 5px 20px;
+      font-size: 12px;
+      position: relative;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #777;
+      overflow:hidden;
+      word-wrap:normal;
+      white-space:nowrap;
+      text-overflow:ellipsis;
+      &:after{
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
+        border: 2px solid ;
+        left: 5px;
+        top: 50%;
+        margin-top: -6px;
+      }
+    }
+
+  }
+
+  .tpl-list{
+    float: left;
+    border-right: 1px solid;
+    .item{
+      margin: 0 5px 1px 0;
+
+      background-color: #00acf0;
+      color: #fff;
+      &:hover{
+        background-color: #74d0f0;
+      }
+    }
+  }
+  .atom-list{
+    float: right;
+    border-left: 1px solid;
+    .item{
+      margin: 0 0 1px 5px;
+      &:hover{
+        background-color: #f0f0f0;
+      }
+    }
+    ._upper{
+      background-color: #00acf0;
+      color: #fff;
+      &:hover{
+        background-color: #74d0f0;
+      }
+    }
+  }
+  .board{
+    padding: 5px;
+    margin: 0 100px;
+    position: relative;
+    height: 100%;
+    .box{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .edit-text{
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -ms-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    display: none;
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+    .box{
+      position: absolute;
+      max-width: 100%;
+      width: 300px;
+      background-color: #fff;
+      border-radius: 10px;
+      left: 50%;
+      margin-left: -150px;
+      top: 50%;
+      margin-top: -54px;
+      overflow: hidden;
+      box-shadow: 0 0 8px #636262;
+      .input{
+        padding: 20px;
+        input{
+          -webkit-appearance: none;
+          width: 100%;
+          line-height: 34px;
+          height: 34px;
+          border: 1px solid #aaa;
+          border-radius: 5px;
+          background-color: transparent;
+          padding: 0 10px;
+        }
+      }
+      .btns{
+        height: 34px;
+        line-height: 34px;
+        .btn1, .btn2{
+          float: left;
+          width: 50%;
+          text-align: center;
+          cursor: pointer;
+          border: 0;
+          display: block;
+          padding: 0;
+          -webkit-appearance: none;
+          background-color: #fff;
+        }
+        .btn1:hover, .btn2:hover{
+          background-color: #eeeeee;
+        }
+      }
+    }
+  }
+
+}

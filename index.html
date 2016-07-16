@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>d3-risk-rules</title>
+    <meta name="referrer" content="always">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="apple-touch-icon-precomposed" href="/favicon.ico">
+    <link href="/favicon.ico" mce_href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="小赢理财">
+    <meta name="description" content="小赢理财">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+</head>
+<body style="padding: 100px 20px">
+<div id="risk-rules"></div>
+
+<div id="dianwo" class="btn btn-info" >点我</div>
+
+<pre><code id="result">
+
+</code></pre>
+
+<p>调用方式:</p>
+<pre><code id="demo-code">
+
+</code></pre>
+
+<script src="https://d3js.org/d3.v4.0.0-alpha.49.min.js"></script>
+
+<script src="./build/bundle.js"></script>
+<script id="demo">
+
+    (function () {
+        //原子数据
+        var atomList = [
+            {
+                id:1,
+                text:"宝气"
+            },
+            {
+                id:2,
+                text:"宝宝"
+            },
+            {
+                id:3,
+                text:"哈宝"
+            },
+            {
+                id:4,
+                text:"宝贝"
+            }
+        ];
+
+        //规则数据
+        var ruleList = [
+            {
+                id:11,
+                text:"规则一"
+            },
+            {
+                id:21,
+                text:"规则2"
+            },
+            {
+                id:31,
+                text:"规则3"
+            },
+            {
+                id:41,
+                text:"规则4"
+            }
+        ];
+        //模板数据
+        var tplList = [
+            {
+                text:'模板一',
+                data: {
+                    "id": 31,
+                    "text": "规则3",
+                    "subMents": [
+                        {
+                            "id": 3,
+                            "text": "哈宝"
+                        },
+                        {
+                            "id": 31,
+                            "text": "规则3",
+                            "subMents": [
+                                {
+                                    "id": 31,
+                                    "text": "规则3",
+                                    "subMents": [
+                                        {
+                                            "id": 1,
+                                            "text": "宝气"
+                                        },
+                                        {
+                                            "id": 3,
+                                            "text": "哈宝"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": 1,
+                                    "text": "宝气"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 21,
+                            "text": "规则2",
+                            "subMents": [
+                                {
+                                    "id": 21,
+                                    "text": "规则2",
+                                    "subMents": [
+                                        {
+                                            "id": 2,
+                                            "text": "宝宝"
+                                        },
+                                        {
+                                            "id": 1,
+                                            "text": "宝气"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": 31,
+                                    "text": "规则3",
+                                    "subMents": [
+                                        {
+                                            "id": 3,
+                                            "text": "哈宝"
+                                        },
+                                        {
+                                            "id": 3,
+                                            "text": "哈宝"
+                                        },
+                                        {
+                                            "id": 4,
+                                            "text": "宝贝"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                text:'模板2',
+                data:{
+                    "id": 31,
+                    "text": "规则3",
+                    "subMents": [
+                        {
+                            "id": 31,
+                            "text": "规则3",
+                            "subMents": [
+                                {
+                                    "id": 1,
+                                    "text": "宝气"
+                                },
+                                {
+                                    "id": 3,
+                                    "text": "哈宝"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 1,
+                            "text": "宝气"
+                        }
+                    ]
+                }
+            },
+            {
+                text:'模板3',
+                data:{
+                    "id": 21,
+                    "text": "规则2",
+                    "subMents": [
+                        {
+                            "id": 21,
+                            "text": "规则2",
+                            "subMents": [
+                                {
+                                    "id": 2,
+                                    "text": "宝宝"
+                                },
+                                {
+                                    "id": 1,
+                                    "text": "宝气"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 31,
+                            "text": "规则3",
+                            "subMents": [
+                                {
+                                    "id": 3,
+                                    "text": "哈宝"
+                                },
+                                {
+                                    "id": 3,
+                                    "text": "哈宝"
+                                },
+                                {
+                                    "id": 4,
+                                    "text": "宝贝"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ];
+
+        //初始化
+        var rule = new window.xy.d3RiskRules({
+            id:'risk-rules',
+            height:500,
+            autoDistanceX:100,
+            autoDistanceY:100
+        });
+
+        rule.setRules(ruleList);//初始化原子
+        rule.setAtoms(atomList);//初始化规则
+        rule.setTpls(tplList);//初始化模板
+
+        //获得规则结构
+        document.getElementById('dianwo').onclick = function () {
+            var re = rule.generatorDataStruct();
+            document.getElementById('result').innerHTML = JSON.stringify(re,null,2);
+        }
+    })();
+</script>
+
+<script>
+    document.getElementById('demo-code').innerHTML = document.getElementById('demo').innerHTML
+</script>
+</body>
+</html>
