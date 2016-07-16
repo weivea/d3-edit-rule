@@ -14,3 +14,5 @@ webpack --config webpack.build.js
 ## demo
 
 https://weivea.github.io/d3-risk-rule/
+
+![样例](./desc.gif)
