@@ -15,4 +15,5 @@ webpack --config webpack.build.js
 
 https://weivea.github.io/d3-risk-rule/
 
+gif太模糊啦,话说有人知道这种清晰制作屏幕截图动态图的方式么?知道的话请发邮件到550281353@qq.com,万分感谢:)
 ![样例](./desc.gif)
